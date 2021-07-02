@@ -6,14 +6,16 @@
 
 {% for record in vinyl %}
 <div class="card">
-    <div class="card-content">
-        <span class="card-title">
-            <p>Artist: {{record.artist}}</p>
-            <p>Title: {{record.title}}</p>
-            <p>Year: {{record.year}}</p>
-            <p>Genre: {{record.genre}}</p>
-        </span>
-    </div>
+    <a href="/vinyl/{{ record.id }}">
+        <div class="card-content">
+            <span class="card-title">
+                <p>Artist: {{record.artist}}</p>
+                <p>Title: {{record.title}}</p>
+                <p>Year: {{record.year}}</p>
+                <p>Genre: {{record.genre}}</p>
+            </span>
+        </div>
+    </a>
 </div>
 
 {% endfor %}
