@@ -1,8 +1,20 @@
 {
     "workbench.colorCustomizations": {
-        "activityBar.background": "#352D0A",
-        "titleBar.activeBackground": "#4A3F0E",
-        "titleBar.activeForeground": "#FCFAF2"
+        "activityBar.background": "#342f0a",
+        "titleBar.activeBackground": "#0a0902",
+        "titleBar.activeForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#342f0a",
+        "activityBar.activeBorder": "#156b61",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#156b61",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#0a0902",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#342f0a",
+        "titleBar.inactiveBackground": "#0a090299",
+        "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "python.pythonPath": "/Users/Ben/.local/share/virtualenvs/django_env-qWpfa-k5/bin/python"
+    "python.pythonPath": "/Users/Ben/.local/share/virtualenvs/django_env-qWpfa-k5/bin/python",
+    "peacock.color": "#0a0902"
 }
