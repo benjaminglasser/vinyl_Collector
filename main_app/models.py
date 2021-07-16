@@ -20,7 +20,7 @@ class Record(models.Model):
 class Artist(models.Model):
     name = models.CharField(max_length=100)
     members = models.TextField(max_length=250)
-    # record = models.ForeignKey(Record, on_delete=models.CASCADE)
+    record = models.ForeignKey(Record, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Record, Artist
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import ArtistForm
 
 
 # vinyl = [
@@ -29,7 +30,13 @@ def record_index(request):
 
 def record_detail(request, record_id):
     record = Record.objects.get(id=record_id)
-    return render(request, 'record/detail.html', {'record': record})
+    artist = Artist.objects.all()
+    artist_form = ArtistForm()
+    return render(request, 'record/detail.html', {
+        'record': record,
+        'artist_form': artist_form,
+        'artist': artist
+    })
 
 
 class RecordCreate(CreateView):
@@ -49,3 +56,12 @@ class RecordUpdate(UpdateView):
 class RecordDelete(DeleteView):
     model = Record
     success_url = '/records/'
+
+
+def add_artist(request, record_id):
+    form = ArtistForm(request.POST)
+    if form.is_valid():
+        new_artist = form.save(commit=False)
+        new_artist.record_id = record_id
+        new_artist.save()
+    return redirect('detail', record_id=record_id)

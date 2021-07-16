@@ -16,10 +16,48 @@
     <div class="card-action">
         <a href="{% url 'records_update' record.id %}">Edit</a>
         <a href="{% url 'records_delete' record.id %}">Delete</a>
-      </div>
+    </div>
+
+</div>
+<div>
+    <!-- add artist form -->
+    <form action="{% url 'add_artist' record.id %}" method="post">
+        {% csrf_token %}
+        {{ artist_form.as_p }}
+        <input type="submit" class="btn" value="Add Artist">
+      </form>
+
+      <!-- select artist -->
+      {% for item in artist %}
+        <p>{{item.name}}</p>
+      {% endfor %}
+
+
+      <!-- added artists  -->
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Arist</th>
+                <th>Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in record.artist_set.all %}
+            <tr>
+                <td>{{artist.name}}</td>
+                <td>{{artist.members}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 </div>
 
+<!-- <script>
 
+    var selectEl = document.getElementById('id_meal');
+    M.FormSelect.init(selectEl);
+  </script> -->
 
 {% endblock %}
