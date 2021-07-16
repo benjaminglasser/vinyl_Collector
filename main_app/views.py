@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Record, Artist
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .forms import ArtistForm
+from .forms import ArtistForm, FormatForm
 
 
 # vinyl = [
@@ -59,6 +59,17 @@ class RecordUpdate(UpdateView):
 class RecordDelete(DeleteView):
     model = Record
     success_url = '/records/'
+
+# Format Views
+
+
+def add_format(request, record_id):
+    form = FormatForm(request.POST)
+    if form.is_valid():
+        new_format = form.save(commit=False)
+        new_format.record_id = record_id
+        new_format.save()
+    return redirect('detail', record_id=record_id)
 
 # Artist Views
 
