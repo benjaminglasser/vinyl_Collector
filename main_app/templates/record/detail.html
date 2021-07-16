@@ -26,10 +26,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for a in record.artist_set.all %}
+                        {% for a in record.artists.all %}
                         <tr>
-                            <td>{{artist.name}}</td>
-                            <td>{{artist.members}}</td>
+                            <td>{{a.name}}</td>
+                            <td>{{a.members}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -42,9 +42,36 @@
         </div>
     </div>
 </div>
+<!-- select artist -->
 
-<!-- Add artist  -->
 <div class="row">
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                {% for a in artist %}
+                <form action="{% url 'assoc_artist' record.id a.id %}" method="post">
+                    {% csrf_token %}
+                    <select name="artist" id="artist-select">
+                        <option value="">Choose An Artist</option>
+                        {% for item in artist %}
+                        <option value="{{item.name}}">{{item.name}}</option>
+                        {% endfor %}
+                    </select>
+                    {% endfor %}
+                    <input type="submit" class="btn" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col s1">
+
+        <h4>OR</h4>
+    </div>
+
+    <!-- Add artist  -->
     <div class="col s5">
         <div class="card">
             <div class="card-content">
@@ -54,28 +81,6 @@
                     {% csrf_token %}
                     {{ artist_form.as_p }}
                     <input type="submit" class="btn" value="Add Artist">
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- select artist -->
-    <div class="col s1">
-
-        <h4>OR</h4>
-    </div>
-    <div class="col s5">
-        <div class="card">
-            <div class="card-content">
-                <form action="" method="post">
-                    <select name="artist" id="artist-select">
-                        <option value="">Choose An Artist</option>
-                        {% for item in artist %}
-                        <option value="{{item.name}}">{{item.name}}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" class="btn" value="submit">
                 </form>
             </div>
         </div>

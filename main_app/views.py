@@ -30,12 +30,14 @@ def record_index(request):
 
 def record_detail(request, record_id):
     record = Record.objects.get(id=record_id)
-    artist = Artist.objects.all()
+    artist_record_doesnt_have = Artist.objects.exclude(
+        id__in=record.artists.all().values_list('id'))
+
     artist_form = ArtistForm()
     return render(request, 'record/detail.html', {
         'record': record,
         'artist_form': artist_form,
-        'artist': artist
+        'artist': artist_record_doesnt_have
     })
 
 
@@ -64,4 +66,9 @@ def add_artist(request, record_id):
         new_artist = form.save(commit=False)
         new_artist.record_id = record_id
         new_artist.save()
+    return redirect('detail', record_id=record_id)
+
+
+def assoc_artist(request, record_id, artist_id):
+    Record.objects.get(id=record_id).artists.add(artist_id)
     return redirect('detail', record_id=record_id)
