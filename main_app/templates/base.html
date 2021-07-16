@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Music Collector</title>
 </head>
 <body>
@@ -18,10 +19,9 @@
             <li><a href="/" class="left brand-logo">Music Collector</a></li>
           </ul>
           <ul class="right">
-            <li><a href="/records/">View All My Records</a></li>
-          </ul>
-          <ul class="right">
-            <li><a href="/about/">About</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'index' %}">View All My Records</a></li>
+            <li><a href="{% url 'records_create' %}">Add Record</a></li>
           </ul>
         </div>
       </nav>

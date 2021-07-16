@@ -6,7 +6,7 @@
 
 {% for r in record %}
 <div class="card">
-    <a href="/records/{{ r.id }}">
+    <a href="{% url 'detail' r.id %}">
         <div class="card-content">
             <span class="card-title">
                 <p>Artist: {{r.artist}}</p>
