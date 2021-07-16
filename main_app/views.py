@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Vinyl
+from .models import Record
 
 
 # vinyl = [
@@ -21,11 +21,11 @@ def about(request):
     return render(request, 'about.html')
 
 
-def vinyl_index(request):
-    vinyl = Vinyl.objects.all()
-    return render(request, 'vinyl/index.html', {'vinyl': vinyl})
+def record_index(request):
+    record = Record.objects.all()
+    return render(request, 'record/index.html', {'record': record})
 
 
-def vinyl_detail(request, record_id):
-    record = Vinyl.objects.get(id=record_id)
-    return render(request, 'vinyl/detail.html', {'record': record})
+def record_detail(request, record_id):
+    record = Record.objects.get(id=record_id)
+    return render(request, 'record/detail.html', {'record': record})

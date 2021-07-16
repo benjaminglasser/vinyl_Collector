@@ -11,7 +11,7 @@ class Artist(models.Model):
         return self.name
 
 
-class Vinyl(models.Model):
+class Record(models.Model):
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     year = models.IntegerField()
@@ -19,3 +19,5 @@ class Vinyl(models.Model):
 
     def __str__(self):
         return self.title
+
+# add format model

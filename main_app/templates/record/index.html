@@ -4,15 +4,15 @@
 <h1>Here are all of your records:</h1>
 <hr />
 
-{% for record in vinyl %}
+{% for r in record %}
 <div class="card">
-    <a href="/vinyl/{{ record.id }}">
+    <a href="/records/{{ r.id }}">
         <div class="card-content">
             <span class="card-title">
-                <p>Artist: {{record.artist}}</p>
-                <p>Title: {{record.title}}</p>
-                <p>Year: {{record.year}}</p>
-                <p>Genre: {{record.genre}}</p>
+                <p>Artist: {{r.artist}}</p>
+                <p>Title: {{r.title}}</p>
+                <p>Year: {{r.year}}</p>
+                <p>Genre: {{r.genre}}</p>
             </span>
         </div>
     </a>
