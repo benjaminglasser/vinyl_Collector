@@ -15,5 +15,11 @@ urlpatterns = [
          views.add_artist, name='add_artist'),
     path('records/<int:record_id>/assoc_artist/<int:artist_id>',
          views.assoc_artist, name="assoc_artist"),
-    path('artists/', views.ArtistList.as_view(), name="artist_index")
+    path('artists/', views.ArtistList.as_view(), name="artist_index"),
+    path('artists/<int:pk>/', views.ArtistDetail.as_view(), name='artist_detail'),
+    path('artists/<int:pk>/update/',
+         views.ArtistUpdate.as_view(), name='artist_update'),
+    path('artists/<int:pk>/delete/',
+         views.ArtistDelete.as_view(), name='artist_delete'),
+
 ]

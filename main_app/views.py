@@ -79,3 +79,17 @@ def assoc_artist(request, record_id, artist_id):
 
 class ArtistList(ListView):
     model = Artist
+
+
+class ArtistDetail(DetailView):
+    model = Artist
+
+
+class ArtistUpdate(UpdateView):
+    model = Artist
+    fields = ['name', 'members']
+
+
+class ArtistDelete(DeleteView):
+    model = Artist
+    success_url = '/artists/'

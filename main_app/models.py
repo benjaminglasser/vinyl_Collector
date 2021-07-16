@@ -11,6 +11,9 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('artist_detail', kwargs={'pk': self.id})
+
 
 class Record(models.Model):
     title = models.CharField(max_length=100)
