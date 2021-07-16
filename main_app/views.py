@@ -34,8 +34,18 @@ def record_detail(request, record_id):
 
 class RecordCreate(CreateView):
     model = Record
-    fields = ['title', 'genre', 'year', 'artist']
+    fields = ['title', 'genre', 'year']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class RecordUpdate(UpdateView):
+    model = Record
+    fields = ['title', 'genre', 'year']
+
+
+class RecordDelete(DeleteView):
+    model = Record
+    success_url = '/records/'
