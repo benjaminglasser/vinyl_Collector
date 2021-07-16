@@ -6,23 +6,49 @@
 
 <div class="card">
     <div class="card-content">
-        <span class="card-title">
-            <!-- <p>Artist: {{record.artist}}</p> -->
-            <p>Title: {{record.title}}</p>
-            <p>Year: {{record.year}}</p>
-            <p>Genre: {{record.genre}}</p>
-        </span>
-    </div>
-    <div class="card-action">
-        <a href="{% url 'records_update' record.id %}">Edit</a>
-        <a href="{% url 'records_delete' record.id %}">Delete</a>
-    </div>
+        <div class="row">
+            <div class="col s6">
+                <span class="card-title">
+                    <!-- <p>Artist: {{record.artist}}</p> -->
+                    <p>Title: {{record.title}}</p>
+                    <p>Year: {{record.year}}</p>
+                    <p>Genre: {{record.genre}}</p>
+                </span>
+            </div>
 
+            <!-- added artists  -->
+            <div class="col s6">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Arist</th>
+                            <th>Members</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in record.artist_set.all %}
+                        <tr>
+                            <td>{{artist.name}}</td>
+                            <td>{{artist.members}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'records_update' record.id %}">Edit</a>
+            <a href="{% url 'records_delete' record.id %}">Delete</a>
+        </div>
+    </div>
 </div>
+
+<!-- Add artist  -->
 <div class="row">
-    <div class="col s6">
+    <div class="col s5">
         <div class="card">
             <div class="card-content">
+                <h6>Create an Artist</h6>
                 <!-- add artist form -->
                 <form action="{% url 'add_artist' record.id %}" method="post">
                     {% csrf_token %}
@@ -32,40 +58,30 @@
             </div>
         </div>
     </div>
-</div>
-<!-- select artist -->
-<div class="row">
-    <div class="col s6">
+
+
+    <!-- select artist -->
+    <div class="col s1">
+
+        <h4>OR</h4>
+    </div>
+    <div class="col s5">
         <div class="card">
             <div class="card-content">
-                <select name="artist" id="artist-select">
-                    <option value="">Choose An Artist</option>
-                    {% for item in artist %}
-                    <option value="{{item.name}}">{{item.name}}</option>
-                    {% endfor %}
-                </select>
+                <form action="" method="post">
+                    <select name="artist" id="artist-select">
+                        <option value="">Choose An Artist</option>
+                        {% for item in artist %}
+                        <option value="{{item.name}}">{{item.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" class="btn" value="submit">
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- added artists  -->
-<table class="striped">
-    <thead>
-        <tr>
-            <th>Arist</th>
-            <th>Members</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for a in record.artist_set.all %}
-        <tr>
-            <td>{{artist.name}}</td>
-            <td>{{artist.members}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
 
 
 </div>
