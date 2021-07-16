@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Record, Artist
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .forms import ArtistForm
 
 
@@ -59,6 +60,8 @@ class RecordDelete(DeleteView):
     model = Record
     success_url = '/records/'
 
+# Artist Views
+
 
 def add_artist(request, record_id):
     form = ArtistForm(request.POST)
@@ -72,3 +75,7 @@ def add_artist(request, record_id):
 def assoc_artist(request, record_id, artist_id):
     Record.objects.get(id=record_id).artists.add(artist_id)
     return redirect('detail', record_id=record_id)
+
+
+class ArtistList(ListView):
+    model = Artist
