@@ -19,45 +19,60 @@
     </div>
 
 </div>
-<div>
-    <!-- add artist form -->
-    <form action="{% url 'add_artist' record.id %}" method="post">
-        {% csrf_token %}
-        {{ artist_form.as_p }}
-        <input type="submit" class="btn" value="Add Artist">
-      </form>
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <!-- add artist form -->
+                <form action="{% url 'add_artist' record.id %}" method="post">
+                    {% csrf_token %}
+                    {{ artist_form.as_p }}
+                    <input type="submit" class="btn" value="Add Artist">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- select artist -->
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <select name="artist" id="artist-select">
+                    <option value="">Choose An Artist</option>
+                    {% for item in artist %}
+                    <option value="{{item.name}}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
-      <!-- select artist -->
-      {% for item in artist %}
-        <p>{{item.name}}</p>
-      {% endfor %}
-
-
-      <!-- added artists  -->
-    <table class="striped">
-        <thead>
-            <tr>
-                <th>Arist</th>
-                <th>Members</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for a in record.artist_set.all %}
-            <tr>
-                <td>{{artist.name}}</td>
-                <td>{{artist.members}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<!-- added artists  -->
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Arist</th>
+            <th>Members</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in record.artist_set.all %}
+        <tr>
+            <td>{{artist.name}}</td>
+            <td>{{artist.members}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 
 </div>
 
-<!-- <script>
-
-    var selectEl = document.getElementById('id_meal');
+<script>
+    var selectEl = document.getElementById('artist-select');
     M.FormSelect.init(selectEl);
-  </script> -->
+</script>
 
 {% endblock %}
