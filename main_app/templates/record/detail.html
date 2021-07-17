@@ -94,9 +94,54 @@
 
 </div>
 <hr />
+<!-- Format section -->
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Formats that you own</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for f in record.format_set.all %}
+                        <tr>
+                            <td>
+                                {{ f.get_format_display }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <form action="{% url 'add_format' record.id%}" method="post">
+                    {% csrf_token %}
+                    {{ format_form.as_p }}
+                    <input type="submit" class="btn" value="Add Format">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     var selectEl = document.getElementById('artist-select');
     M.FormSelect.init(selectEl);
+
+    var selectElFormat = document.getElementById('id_format');
+    M.FormSelect.init(selectElFormat);
 </script>
 
 {% endblock %}

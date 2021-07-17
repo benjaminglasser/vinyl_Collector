@@ -35,9 +35,12 @@ def record_detail(request, record_id):
         id__in=record.artists.all().values_list('id'))
 
     artist_form = ArtistForm()
+    format_form = FormatForm()
+
     return render(request, 'record/detail.html', {
         'record': record,
         'artist_form': artist_form,
+        'format_form': format_form,
         'artist': artist_record_doesnt_have
     })
 
