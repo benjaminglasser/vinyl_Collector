@@ -13,7 +13,7 @@ urlpatterns = [
          views.RecordDelete.as_view(), name='records_delete'),
     path('records/<int:record_id>/add_artist/',
          views.add_artist, name='add_artist'),
-    path('records/<int:record_id>/assoc_artist/<int:artist_id>',
+    path('records/<int:record_id>/assoc_artist/',
          views.assoc_artist, name="assoc_artist"),
     path('records/<int:record_id>/add_format/',
          views.add_format, name='add_format'),

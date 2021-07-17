@@ -52,12 +52,12 @@
         <div class="card">
             <div class="card-content">
                 {% for a in artist %}
-                <form action="{% url 'assoc_artist' record.id a.id %}" method="post">
+                <form action="{% url 'assoc_artist' record.id %}" method="POST">
                     {% csrf_token %}
-                    <select name="artist" id="artist-select">
-                        <option value="">Choose An Artist</option>
+                    <select name="artist-select" id="artist-select">
+                        <option value="" disabled="true" selected>Choose An Artist</option>
                         {% for item in artist %}
-                        <option value="{{item.name}}">{{item.name}}</option>
+                        <option value="{{item.id}}">{{item.name}}</option>
                         {% endfor %}
                     </select>
                     {% endfor %}

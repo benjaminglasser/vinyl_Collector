@@ -85,9 +85,16 @@ def add_artist(request, record_id):
         new_artist.save()
     return redirect('detail', record_id=record_id)
 
+# todo: fix choosing artist bug HERE
 
-def assoc_artist(request, record_id, artist_id):
+
+def assoc_artist(request, record_id):
+    artist_id = request.POST.get('artist-select', None)
     Record.objects.get(id=record_id).artists.add(artist_id)
+
+    # selection_id = request.POST['artist_id']
+    # Record.objects.get(id=record_id).artists.add(selection_id)
+
     return redirect('detail', record_id=record_id)
 
 
