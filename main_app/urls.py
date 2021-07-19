@@ -15,8 +15,11 @@ urlpatterns = [
          views.add_artist, name='add_artist'),
     path('records/<int:record_id>/assoc_artist/',
          views.assoc_artist, name="assoc_artist"),
+    # format paths
     path('records/<int:record_id>/add_format/',
          views.add_format, name='add_format'),
+    path('records/<int:record_id>/delete_format/<int:format_id>',
+         views.delete_format, name='delete_format'),
     #  artist paths
     path('artists/', views.ArtistList.as_view(), name="artist_index"),
     path('artists/<int:pk>/', views.ArtistDetail.as_view(), name='artist_detail'),

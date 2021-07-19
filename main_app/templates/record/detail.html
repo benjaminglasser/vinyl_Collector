@@ -110,7 +110,11 @@
                         {% for f in record.format_set.all %}
                         <tr>
                             <td>
-                                {{ f.get_format_display }}
+                                <form action="{% url 'delete_format' record.id f.id %}" method="post">
+                                    {% csrf_token %}
+                                    {{ f.get_format_display }}
+                                    <input type="submit" class="btn red right delete" value="x">
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}

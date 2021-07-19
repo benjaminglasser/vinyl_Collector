@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Record, Artist
+from .models import Record, Artist, Format
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import ArtistForm, FormatForm
@@ -26,7 +26,11 @@ def about(request):
 
 def record_index(request):
     record = Record.objects.all()
-    return render(request, 'record/index.html', {'record': record})
+    # artist = Record.objects.filter('artists')
+    return render(request, 'record/index.html', {
+        'record': record,
+        # 'artist': artist
+    })
 
 
 def record_detail(request, record_id):
@@ -36,12 +40,14 @@ def record_detail(request, record_id):
 
     artist_form = ArtistForm()
     format_form = FormatForm()
+    format = Format.objects.all()
 
     return render(request, 'record/detail.html', {
         'record': record,
         'artist_form': artist_form,
         'format_form': format_form,
-        'artist': artist_record_doesnt_have
+        'artist': artist_record_doesnt_have,
+        'format': format
     })
 
 
@@ -73,6 +79,13 @@ def add_format(request, record_id):
         new_format.record_id = record_id
         new_format.save()
     return redirect('detail', record_id=record_id)
+
+
+def delete_format(request, record_id, format_id):
+    Format.objects.get(id=format_id).delete()
+    return redirect('detail', record_id=record_id)
+    # print('hi')
+
 
 # Artist Views
 
