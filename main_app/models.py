@@ -15,7 +15,7 @@ class Artist(models.Model):
     members = models.TextField(max_length=250)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
     def get_absolute_url(self):
         return reverse('artist_detail', kwargs={'pk': self.id})

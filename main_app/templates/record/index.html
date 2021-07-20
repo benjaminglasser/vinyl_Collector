@@ -3,13 +3,17 @@
 
 <h1>Here are all of your records:</h1>
 <hr />
-
 {% for r in record %}
+    
 <div class="card">
     <a href="{% url 'detail' r.id %}">
         <div class="card-content">
             <span class="card-title">
-                <p>Artist: {{r.artists.name}}</p>
+                <p>Artists:
+                    {% for artist in r.artists.all %}
+                      <span>{{ artist }}</span>
+                    {% endfor %}
+                  </p>
                 <p>Title: {{r.title}}</p>
                 <p>Year: {{r.year}}</p>
                 <p>Genre: {{r.genre}}</p>

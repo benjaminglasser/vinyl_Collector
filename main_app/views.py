@@ -41,13 +41,17 @@ def record_detail(request, record_id):
     artist_form = ArtistForm()
     format_form = FormatForm()
     format = Format.objects.all()
+    format_record_doesnt_have = Format.objects.exclude(
+        id__in=format
+    )
 
     return render(request, 'record/detail.html', {
         'record': record,
         'artist_form': artist_form,
         'format_form': format_form,
         'artist': artist_record_doesnt_have,
-        'format': format
+        'format': format,
+        'format_record_doesnt_have': format_record_doesnt_have
     })
 
 
